@@ -1,0 +1,17 @@
+# World Under Water cron schedule
+# Run `crontab config/worldunderwater.cron`
+
+# Ingestion
+*/15 * * * * cd /var/www/worldunderwater && npm run ingest >> /var/log/worldunderwater/ingestion.log 2>&1
+
+# Content queue processing
+*/2 * * * * cd /var/www/worldunderwater && npm run process:queue >> /var/log/worldunderwater/queue.log 2>&1
+
+# Cleanup old logs/events
+0 3 * * * cd /var/www/worldunderwater && npm run maintenance:cleanup >> /var/log/worldunderwater/maintenance.log 2>&1
+
+# Vacuum & analyze
+0 4 * * 0 cd /var/www/worldunderwater && npm run maintenance:vacuum >> /var/log/worldunderwater/maintenance.log 2>&1
+
+# Monitoring alerts
+*/10 * * * * cd /var/www/worldunderwater && npm run monitor:ingest >> /var/log/worldunderwater/monitor.log 2>&1

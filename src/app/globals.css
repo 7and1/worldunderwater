@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Underwater Theme - Abyss Palette */
+  --color-abyss-900: #0a0f1a;
+  --color-abyss-800: #0f172a;
+  --color-abyss-700: #1e293b;
+
+  /* Ocean Blues */
+  --color-ocean-600: #0369a1;
+  --color-ocean-500: #0ea5e9;
+  --color-ocean-400: #38bdf8;
+
+  /* Surface Greens */
+  --color-surface-500: #22c55e;
+  --color-surface-400: #4ade80;
+
+  /* Warning Coral */
+  --color-coral-500: #f97316;
+  --color-coral-400: #fb923c;
+
+  /* Danger */
+  --color-danger-500: #ef4444;
+  --color-danger-400: #f87171;
+
+  /* Foam (neutral) */
+  --color-foam-100: #f1f5f9;
+  --color-foam-200: #e2e8f0;
+  --color-foam-300: #cbd5e1;
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    background: linear-gradient(
+      180deg,
+      var(--color-abyss-900) 0%,
+      var(--color-abyss-800) 50%,
+      var(--color-abyss-700) 100%
+    );
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  /* Severity Badges */
+  .badge-minor {
+    @apply bg-slate-600 text-slate-100 px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-moderate {
+    @apply bg-yellow-600 text-yellow-100 px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-severe {
+    @apply bg-orange-600 text-orange-100 px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-catastrophic {
+    @apply bg-red-600 text-red-100 px-2 py-0.5 rounded text-xs font-medium animate-pulse;
+  }
+
+  /* Disaster Type Badges */
+  .badge-flood {
+    @apply bg-blue-600 text-blue-100;
+  }
+
+  .badge-earthquake {
+    @apply bg-amber-700 text-amber-100;
+  }
+
+  .badge-hurricane {
+    @apply bg-purple-600 text-purple-100;
+  }
+
+  .badge-wildfire {
+    @apply bg-red-700 text-red-100;
+  }
+
+  .badge-tsunami {
+    @apply bg-cyan-700 text-cyan-100;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-4;
+  }
+
+  .card-hover {
+    @apply card hover:border-sky-500/50 hover:bg-slate-800/70 transition-all duration-200;
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-sky-600 hover:bg-sky-500 text-white font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-700 hover:bg-slate-600 text-slate-100 font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-500 text-white font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+
+  /* Article Styles */
+  .article-content {
+    @apply prose prose-invert prose-slate max-w-none;
+    @apply prose-headings:text-slate-100 prose-headings:font-semibold;
+    @apply prose-p:text-slate-300 prose-p:leading-relaxed;
+    @apply prose-a:text-sky-400 prose-a:no-underline hover:prose-a:underline;
+    @apply prose-strong:text-slate-100;
+    @apply prose-ul:text-slate-300 prose-ol:text-slate-300;
+    @apply prose-li:marker:text-sky-500;
+  }
+
+  /* Live Indicator */
+  .live-indicator {
+    @apply inline-flex items-center gap-1.5;
+  }
+
+  .live-indicator::before {
+    content: "";
+    @apply w-2 h-2 bg-red-500 rounded-full animate-pulse;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-sky-400 to-emerald-400 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  /* Animation for disaster alerts */
+  .animate-alert {
+    animation: alert-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes alert-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+  }
+
+  /* Scrollbar Styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.slate.600") transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: theme("colors.slate.600");
+    border-radius: 3px;
+  }
+}

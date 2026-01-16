@@ -1,0 +1,60 @@
+# Docker Compose file for centralized log aggregation
+# Run alongside main docker-compose.yml
+#
+# Services:
+# - fluentd: Collects and forwards logs
+# - loki: Log aggregation (optional, uncomment if needed)
+# - grafana: Log visualization (optional, uncomment if needed)
+
+services:
+  fluentd:
+    image: fluent/fluentd:v1.16-1
+    volumes:
+      - ./fluentd.conf:/fluentd/etc/fluent.conf:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log:/var/log:ro
+    ports:
+      - "24224:24224"
+    networks:
+      - logging
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+  # Uncomment to enable Loki log aggregation
+  loki:
+    image: grafana/loki:latest
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml:ro
+      - loki_data:/loki
+    ports:
+      - "3100:3100"
+    networks:
+      - logging
+    restart: unless-stopped
+
+  # Uncomment to enable Grafana for log visualization
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: changeme
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3002:3000"
+    networks:
+      - logging
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+networks:
+  logging:
+    driver: bridge
+
+volumes:
+  loki_data:
+  grafana_data:

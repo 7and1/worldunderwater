@@ -1,0 +1,71 @@
+# Lock files (optional - some projects commit these)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+.next/
+out/
+dist/
+.open-next/
+
+# Environment files (NEVER commit secrets)
+.env
+.env.*
+!.env.example
+!.env.docker.example
+!.env.secrets.example
+!.env.production.example
+
+# Secrets directory
+secrets/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# Cache
+.cache/
+.eslintcache
+
+# Documentation (private)
+docs/
+
+# Project docs (keep private)
+CLAUDE.md
+AGENTS.md
+GENESIS.md
+SECURITY-FIXES.md
+
+# Wrangler
+.wrangler/
+
+# Test coverage
+coverage/
+
+# Database
+*.sql
+*.dump
+
+# Generated files (keep in .gitignore, generate at build)
+public/generated/

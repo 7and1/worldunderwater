@@ -1,0 +1,60 @@
+{
+  "name": "worldunderwater",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "lint": "next lint",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "generate:types": "payload generate:types",
+    "generate:schema": "payload generate:db-schema",
+    "db:migrate": "payload migrate",
+    "db:migrate:create": "payload migrate:create",
+    "cron:start": "tsx src/cron/scheduler.ts",
+    "ingest": "tsx scripts/ingest-data.ts",
+    "ingest:dry-run": "tsx scripts/ingest-data.ts --dry-run",
+    "process:queue": "tsx scripts/process-queue.ts",
+    "maintenance:cleanup": "tsx scripts/maintenance/cleanup-data.ts",
+    "maintenance:vacuum": "tsx scripts/maintenance/db-maintenance.ts",
+    "monitor:ingest": "tsx scripts/monitoring/alert-on-failure.ts",
+    "analyze": "cross-env ANALYZE=true next build"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.0.0",
+    "@payloadcms/next": "^3.0.0",
+    "@payloadcms/richtext-lexical": "^3.0.0",
+    "@payloadcms/ui": "^3.0.0",
+    "dotenv": "^16.4.0",
+    "graphql": "^16.9.0",
+    "jsdom": "27.4.0",
+    "maplibre-gl": "5.16.0",
+    "next": "^15.0.0",
+    "node-cron": "^3.0.3",
+    "openai": "^4.68.0",
+    "payload": "^3.0.0",
+    "pg": "^8.11.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "15.5.9",
+    "@types/maplibre-gl": "1.13.2",
+    "@types/node": "^22.0.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.0.0",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
