@@ -35,17 +35,17 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-sticky glass border-b border-ocean-600/30">
         <div className="container-wide">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-12 md:h-14">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10 md:w-12 md:h-12">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="relative w-8 h-8 md:w-10 md:h-10">
                 {/* Animated water drop logo */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-surface-400 to-ocean-600 opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-1 rounded-full bg-abyss-950 flex items-center justify-center">
+                <div className="absolute inset-0.5 rounded-full bg-abyss-950 flex items-center justify-center">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
-                    className="w-5 h-5 md:w-6 md:h-6 text-surface-400"
+                    className="w-4 h-4 md:w-5 md:h-5 text-surface-400"
                     stroke="currentColor"
                     strokeWidth="2"
                   >

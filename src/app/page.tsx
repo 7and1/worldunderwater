@@ -40,7 +40,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center wave-overlay">
+      <section className="relative min-h-[45vh] flex items-center wave-overlay">
         {/* Background */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-abyss-950 via-ocean-900/90 to-abyss-950" />
@@ -50,7 +50,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="relative container-content py-20 md:py-32">
+        <div className="relative container-content py-10 md:py-14">
           <div className="max-w-3xl">
             {/* Live stats badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
@@ -171,10 +171,10 @@ export default async function HomePage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
-              <div className="w-16 h-16 rounded-full bg-ocean-800 flex items-center justify-center mx-auto mb-4">
+            <div className="text-center py-8">
+              <div className="w-10 h-10 rounded-full bg-ocean-800 flex items-center justify-center mx-auto mb-3">
                 <svg
-                  className="w-8 h-8 text-foam-muted"
+                  className="w-5 h-5 text-foam-muted"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -187,10 +187,12 @@ export default async function HomePage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-foam-100 mb-2">
+              <h3 className="text-sm font-medium text-foam-100 mb-1">
                 No Active Disasters
               </h3>
-              <p className="text-foam-muted">Check back later for updates.</p>
+              <p className="text-xs text-foam-muted">
+                Check back later for updates.
+              </p>
             </div>
           )}
         </div>

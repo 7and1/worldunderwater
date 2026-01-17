@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.5.9",
-    "@types/jsdom": "^21.1.0",
+    "@types/jsdom": "21.1.7",
     "@types/maplibre-gl": "1.13.2",
     "@types/node": "^22.0.0",
     "@types/node-cron": "^3.0.11",
