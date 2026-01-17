@@ -286,7 +286,7 @@ async function registerSocialHandlers() {
         if (!p.articleId || !p.slug || !p.title || !p.text) {
           return {
             success: false,
-            error: "Invalid payload: missing required fields",
+            error: new Error("Invalid payload: missing required fields"),
             retryable: false,
           };
         }
