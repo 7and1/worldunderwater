@@ -12,11 +12,11 @@ const SECURITY_HEADERS = {
   // Allows same-origin, inline scripts for Next.js, and common external services
   "Content-Security-Policy": [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.usefathom.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.usefathom.com https://static.cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",
-    "connect-src 'self' https://api.usefathom.com",
+    "connect-src 'self' https://api.usefathom.com https://static.cloudflareinsights.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",

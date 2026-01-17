@@ -67,7 +67,7 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self';",
               // Script sources: self, inline for Next.js, mapbox for maps
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' api.mapbox.com;",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' api.mapbox.com https://static.cloudflareinsights.com;",
               // Style sources: self, inline for Next.js, mapbox, google fonts
               "style-src 'self' 'unsafe-inline' api.mapbox.com fonts.googleapis.com;",
               // Image sources: self, data URIs, mapbox, NASA, USGS, unsplash, amazon
@@ -75,7 +75,7 @@ const nextConfig: NextConfig = {
               // Font sources: self, google fonts
               "font-src 'self' fonts.gstatic.com fonts.googleapis.com data:;",
               // Connect sources: API endpoints, analytics
-              "connect-src 'self' api.mapbox.com events.mapbox.com https://tile.openstreetmap.org;",
+              "connect-src 'self' api.mapbox.com events.mapbox.com https://tile.openstreetmap.org https://static.cloudflareinsights.com;",
               // Frame sources: none (disallow iframes)
               "frame-src 'none';",
               // Media sources: self
