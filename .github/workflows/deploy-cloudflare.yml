@@ -36,15 +36,21 @@ jobs:
           PAYLOAD_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
 
-      - name: Create _redirects file for API proxy
+      - name: Clean build artifacts for Cloudflare
         run: |
-          mkdir -p .next/server/app
+          # Remove cache directories
+          rm -rf .next/cache
+          rm -rf .next/standalone
+          # Remove webpack cache files larger than 25MB
+          find .next -name "*.pack" -size +25M -delete
+          find .next -type f -size +25M -delete
+          # Create _redirects for API proxy
           cat > .next/_redirects << 'EOF'
           # API routes proxy to VPS backend
-          /api/* https://107.174.42.198:3024/api/:splat 200
+          /api/* https://worldunderwater.org/api/:splat 200
           # Admin routes proxy to VPS backend
-          /admin/* https://107.174.42.198:3024/admin/:splat 200
-          /login https://107.174.42.198:3024/login 200
+          /admin/* https://worldunderwater.org/admin/:splat 200
+          /login https://worldunderwater.org/login 200
           EOF
 
       - name: Deploy to Cloudflare Pages
@@ -52,4 +58,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .next --project-name=worldunderwater
+          command: pages deploy .next --project-name=worldunderwater --commit-dirty=true
