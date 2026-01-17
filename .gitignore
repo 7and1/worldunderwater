@@ -1,5 +1,5 @@
-# Lock files (optional - some projects commit these)
-package-lock.json
+# Lock files (committed for CI/CD reproducibility)
+# package-lock.json - committed for GitHub Actions
 pnpm-lock.yaml
 yarn.lock
 
