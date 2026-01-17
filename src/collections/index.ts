@@ -1,3 +1,4 @@
+export { Users } from "./Users";
 export { default as DisasterTypes } from "./DisasterTypes";
 export { default as RawEvents } from "./RawEvents";
 export { default as Products } from "./Products";

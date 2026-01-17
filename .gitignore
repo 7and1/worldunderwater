@@ -59,6 +59,8 @@ SECURITY-FIXES.md
 
 # Wrangler
 .wrangler/
+wrangler.toml
+!wrangler.toml.example
 
 # Test coverage
 coverage/

@@ -112,10 +112,10 @@ function estimateReadingTime(content: string): number {
 function normalizeContent(content: unknown, excerpt?: string): string {
   if (typeof content === "string") return content;
 
-  if (content && typeof content === "object") {
+  if (content && typeof content === "object" && "root" in content) {
     try {
       return convertLexicalToHTML({
-        data: content as Record<string, unknown>,
+        data: content as any,
         disableContainer: true,
       });
     } catch {

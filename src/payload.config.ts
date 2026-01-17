@@ -2,8 +2,13 @@ import { buildConfig } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 import {
+  Users,
   DisasterTypes,
   RawEvents,
   Products,
@@ -22,6 +27,7 @@ export default buildConfig({
   },
 
   collections: [
+    Users,
     DisasterTypes,
     RawEvents,
     Products,
@@ -41,15 +47,15 @@ export default buildConfig({
       connectionTimeoutMillis: 5000,
       statement_timeout: 30000,
     },
-    migrationDir: path.resolve(__dirname, "../migrations"),
+    migrationDir: path.resolve(dirname, "../migrations"),
   }),
 
   typescript: {
-    outputFile: path.resolve(__dirname, "payload-types.ts"),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
 
   graphQL: {
-    schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
+    schemaOutputFile: path.resolve(dirname, "generated-schema.graphql"),
   },
 
   cors: [process.env.PAYLOAD_PUBLIC_SITE_URL || "http://localhost:3000"].filter(

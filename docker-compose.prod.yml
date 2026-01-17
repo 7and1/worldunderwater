@@ -1,6 +1,6 @@
 # Production Docker Compose for VPS (107.174.42.198)
 # Uses existing Supabase DB - DO NOT run separate DB container
-# Port: 3024 (web), 3025 (cms/admin)
+# Port: 3024 (web + PayloadCMS admin at /admin)
 
 services:
   web:
@@ -41,50 +41,6 @@ services:
         reservations:
           cpus: "0.25"
           memory: 256M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
-  cms:
-    build: .
-    container_name: worldunderwater-cms
-    restart: unless-stopped
-    env_file:
-      - .env.production
-    environment:
-      NODE_ENV: production
-      PORT: 3001
-    ports:
-      - "3025:3001"
-    command: ["npm", "run", "payload"]
-    volumes:
-      - ./public/generated:/app/public/generated
-    networks:
-      - supabase-tier
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "wget",
-          "--no-verbose",
-          "--tries=1",
-          "--spider",
-          "http://localhost:3001/admin",
-        ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 120s
-    deploy:
-      resources:
-        limits:
-          cpus: "1.0"
-          memory: 512M
-        reservations:
-          cpus: "0.25"
-          memory: 128M
     logging:
       driver: "json-file"
       options:

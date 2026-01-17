@@ -10,10 +10,10 @@ let editorConfigPromise: ReturnType<typeof editorConfigFactory.default> | null =
 
 async function getEditorConfig() {
   if (!editorConfigPromise) {
+    const config = await payloadConfig;
     editorConfigPromise = editorConfigFactory.default({
-      config: payloadConfig,
+      config,
       parentIsLocalized: false,
-      isRoot: true,
     });
   }
   return editorConfigPromise;

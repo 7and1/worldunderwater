@@ -1,0 +1,27 @@
+# Wrangler Configuration Example
+# Copy this file to wrangler.toml and fill in your values
+# IMPORTANT: wrangler.toml is in .gitignore - never commit it with secrets!
+
+# Cloudflare Account ID
+# Get yours from: https://dash.cloudflare.com → Workers & Pages
+# Or use environment variable: CLOUDFLARE_ACCOUNT_ID
+# account_id = "your-account-id-here"
+
+name = "worldunderwater"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = ".next"
+
+# Environment variables (set via Cloudflare dashboard or Secrets)
+# You can also set them in wrangler.toml for local development:
+# [vars]
+# NEXT_PUBLIC_SITE_URL = "https://worldunderwater.org"
+# PAYLOAD_PUBLIC_SITE_URL = "https://worldunderwater.org"
+
+# Production environment variables (secrets - do NOT commit)
+# Use: wrangler secret put <NAME> --env production
+# Or set in Cloudflare dashboard: Settings → Environment Variables
+# - DATABASE_URL
+# - PAYLOAD_SECRET
+# - OPENAI_API_KEY
+# - MAPBOX_ACCESS_TOKEN
+# - OPENWEATHERMAP_API_KEY

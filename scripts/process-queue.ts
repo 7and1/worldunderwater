@@ -278,15 +278,28 @@ async function registerSocialHandlers() {
   });
 
   Object.values(SocialJobType).forEach((jobType) => {
-    const handler: JobHandler<
-      Record<string, unknown>,
-      Record<string, unknown>
-    > = {
+    const handler: JobHandler<unknown, unknown> = {
       type: jobType as unknown as JobType,
       async handler(payload) {
+        // Validate payload has required properties
+        const p = payload as Record<string, unknown>;
+        if (!p.articleId || !p.slug || !p.title || !p.text) {
+          return {
+            success: false,
+            error: "Invalid payload: missing required fields",
+            retryable: false,
+          };
+        }
+        const socialPayload: SocialPayload = {
+          articleId: String(p.articleId),
+          slug: String(p.slug),
+          title: String(p.title),
+          text: String(p.text),
+          imageUrl: p.imageUrl ? String(p.imageUrl) : undefined,
+        };
         const result = await executeSocialPost(
           jobType as SocialJobType,
-          payload as SocialPayload,
+          socialPayload,
         );
 
         if (result.success) {
